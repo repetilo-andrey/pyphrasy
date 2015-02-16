@@ -49,7 +49,7 @@ class PhraseInflector(object):
 
             for j, parsed in enumerate(self.morph.parse(word)):
 
-                if 'NOUN' in parsed.tag or 'nomn' in parsed.tag:
+                if {'NOUN', 'nomn'} in parsed.tag:
                     version = self.ScoreHelper(parsed)
                     version.fixed_number_score = 1 if ({'Pltm', 'Sgtm'} & set(parsed.tag.grammemes)) else 0
                     version.score = (100.0 * parsed.score / (1.0 + 0.2 * j + (1 if is_derivative else 0))
